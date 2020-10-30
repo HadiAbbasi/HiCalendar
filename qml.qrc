@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/hi">
+        <file>main.qml</file>
+        <file>hi/HiCalendarView.qml</file>
+        <file>hi/HiCalendarFullDayItemView.qml</file>
+        <file>hi/HiCalendarMinDayItemView.qml</file>
+        <file>hi/HiCalendarJalaliHeader.qml</file>
+        <file>hi/HiCalendarGeorgianHeader.qml</file>
+    </qresource>
+</RCC>

@@ -1,32 +1,19 @@
-# HiCalendar
+/**
+  * @ Developed By Hadi Abbasi Programmer
+  * @ Email:     (hadi.abbasi.programmer@gmail.com)
+  * @ Linked In: https://www.linkedin.com/in/hadi-abbasi-59902145/
+  * @ Telegram:  @Hadi_Abbasi_Programmer
+  * */
+#include <iostream>
+using namespace std;
 
-This is a Pro Calendar Widget for Qt (C++  +  Qml)!
-
-It supports:
-    Us Georgian calendar    (weeks start with sunday),
-    Euro Georgian calendar  (weeks start with monday),
-    persian Jalali calendar (weeks starts with saturday)!
-
-# Description:
--------------------------------
-the project is still in its early stages and it may have some bugs and errors!
-
-**HiCalendarController::CalendarTypes contains these 3 types:**
-
-HiCalendarController::CalendarTypes::UsGeorgian
-HiCalendarController::CalendarTypes::EuroGeorgian
-HiCalendarController::CalendarTypes::Jalali
-
-As we need to renew calendar depended on user clendar type changing, there is a hicalendarcontext class which is the container for our main hicalendarcontroller!
-here is main.cpp codes on this example!
-
-```
 #include <QApplication>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QMetaObject>
 #include <QQmlContext>
 #include <QDebug>
+#include <QDateTime>
 #include "assetsmanager.h"
 #include "hi/hicalendar.h"
 
@@ -41,6 +28,7 @@ int main(int argc, char *argv[])
     QML_REGISTER(YearMonthDay,"hi",1,0)
     QML_REGISTER(HiCalendarDayModel,"hi",1,0)
     QML_REGISTER(HiCalendarController,"hi",1,0)
+
     QQmlApplicationEngine engine;
     HiCalendarContext* calendar_context = new HiCalendarContext();
     QObject::connect(calendar_context,&HiCalendarContext::CalendarChangedSi,[calendar_context]()
@@ -48,17 +36,17 @@ int main(int argc, char *argv[])
         QObject::connect(calendar_context->getCalendar(),&HiCalendarController::daySelectedSi,[]( HiCalendarDayModel* selected_day)
         {
             qDebug()<<"-------> "<<selected_day->toString();
-            //            selected_day->isToday();
-            //            selected_day->isDayOver();
-            //            selected_day->getJalaloDay();
-            //            selected_day->getJalaliMonth();
-            //            selected_day->getJalaliYear();
-            //            selected_day->getGeorgianDay();
-            //            selected_day->getGeorgianMonth();
-            //            selected_day->getGeorgianYear();
-            //            selected_day->getIslamicDay();
-            //            selected_day->getIslamicMonth();
-            //            selected_day->getIslamicYear();
+//            selected_day->isToday();
+//            selected_day->isDayOver();
+//            selected_day->getJalaloDay();
+//            selected_day->getJalaliMonth();
+//            selected_day->getJalaliYear();
+//            selected_day->getGeorgianDay();
+//            selected_day->getGeorgianMonth();
+//            selected_day->getGeorgianYear();
+//            selected_day->getIslamicDay();
+//            selected_day->getIslamicMonth();
+//            selected_day->getIslamicYear();
         });
     });
     calendar_context->renewCalendar(HiCalendarController::CalendarTypes::UsGeorgian);//
@@ -67,8 +55,7 @@ int main(int argc, char *argv[])
     engine.load(QUrl(AssetsManager::getAssetsAddress(AssetsManager::qrc_asset,"hi/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
-    
+    QObject *item = engine.rootObjects()[0];
+
     return app.exec();
 }
-```
-
