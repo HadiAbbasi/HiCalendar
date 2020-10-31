@@ -20,7 +20,7 @@ HiCalendarController::CalendarTypes::Jalali
 As we need to renew calendar depended on user clendar type changing, there is a hicalendarcontext class which is the container for our main hicalendarcontroller!
 here is main.cpp codes on this example!
 
-```
+```cpp
 #include <QApplication>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
