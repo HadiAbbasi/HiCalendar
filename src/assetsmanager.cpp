@@ -1,4 +1,4 @@
-#include "assetsmanager.h"
+#include "include/assetsmanager.hpp"
 
 QString AssetsManager::getAssetsAddress(AssetsManager::assetType _AssetType,QString _Offset)
 {

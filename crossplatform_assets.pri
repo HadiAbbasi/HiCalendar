@@ -1,8 +1,8 @@
-SOURCES += assetsmanager.cpp \
-    $$PWD/dbmanager.cpp
+SOURCES += src/assetsmanager.cpp \
+    src/dbmanager.cpp
 
-HEADERS += assetsmanager.h \
-    $$PWD/dbmanager.h
+HEADERS += include/assetsmanager.hpp \
+   include/dbmanager.hpp
 
 source = $$PWD/assets
 target = $$OUT_PWD/assets
@@ -16,15 +16,15 @@ win32{
     }
     else{
         message("assets not exists!")
-        source = $$replace(source, /, \\)
-        target = $$replace(target, /, \\)
-        target ~= s,\\\\\\.?\\\\,\\,
-        copyCommand += xcopy /E /I /Y \"$$source\" \"$$target\"
-        copydeploymentfolders.commands += $$copyCommand
-        first.depends += $(first) copydeploymentfolders
-        export(first.depends)
-        export(copydeploymentfolders.commands)
-        QMAKE_EXTRA_TARGETS += first copydeploymentfolders
+	source = $$replace(source, /, \\)
+	target = $$replace(target, /, \\)
+	target ~= s,\\\\\\.?\\\\,\\,
+	copyCommand += xcopy /E /I /Y \"$$source\" \"$$target\"
+	copydeploymentfolders.commands += $$copyCommand
+	first.depends += $(first) copydeploymentfolders
+	export(first.depends)
+	export(copydeploymentfolders.commands)
+	QMAKE_EXTRA_TARGETS += first copydeploymentfolders
     }
 }
 win64{
@@ -34,15 +34,15 @@ win64{
     }
     else{
         message("assets not exists!")
-        source = $$replace(source, /, \\)
-        target = $$replace(target, /, \\)
-        target ~= s,\\\\\\.?\\\\,\\,
-        copyCommand += xcopy /E /I /Y \"$$source\" \"$$target\"
-        copydeploymentfolders.commands += $$copyCommand
-        first.depends += $(first) copydeploymentfolders
-        export(first.depends)
-        export(copydeploymentfolders.commands)
-        QMAKE_EXTRA_TARGETS += first copydeploymentfolders
+	source = $$replace(source, /, \\)
+	target = $$replace(target, /, \\)
+	target ~= s,\\\\\\.?\\\\,\\,
+	copyCommand += xcopy /E /I /Y \"$$source\" \"$$target\"
+	copydeploymentfolders.commands += $$copyCommand
+	first.depends += $(first) copydeploymentfolders
+	export(first.depends)
+	export(copydeploymentfolders.commands)
+	QMAKE_EXTRA_TARGETS += first copydeploymentfolders
     }
 }
 android{

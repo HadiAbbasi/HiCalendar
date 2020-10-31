@@ -1,15 +1,15 @@
 # HiCalendar
 
-This is a Pro Calendar Widget for Qt (C++  +  Qml)!
+Hi Calendar Pro Component based on C++ and Qt Quick technology.
 
 It supports:
-    Us Georgian calendar    (weeks start with sunday),
-    Euro Georgian calendar  (weeks start with monday),
-    persian Jalali calendar (weeks starts with saturday)!
+    Us Georgian calendar    (weeks start with sunday).
+    Euro Georgian calendar  (weeks start with monday)
+    Persian Jalali calendar (weeks starts with saturday).
 
 # Description:
 -------------------------------
-the project is still in its early stages and it may have some bugs and errors!
+The project is still in its early stages and it may have some bugs and errors!
 
 **HiCalendarController::CalendarTypes contains these 3 types:**
 
@@ -27,11 +27,10 @@ here is main.cpp codes on this example!
 #include <QMetaObject>
 #include <QQmlContext>
 #include <QDebug>
-#include "assetsmanager.h"
-#include "hi/hicalendar.h"
 
-#define QML_REGISTER(classname,packagename,MAJORVERSION,minorversion) \
-    qmlRegisterType<classname>(packagename, MAJORVERSION, minorversion, #classname);
+#include "assetsmanager.hpp"
+#include "include/hi/hicalendar.hpp"
+#include "include/common.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -72,3 +71,8 @@ int main(int argc, char *argv[])
 }
 ```
 
+**Building**
+You need CMake or QMake tool for building source code based on Qt 5.15 series.
+
+**Contribution**
+Bug fixes, docs, and enhancements welcome! Please let us know hadi.abbasi.programmer@gmail.com or kambiz.ceo@gmail.com

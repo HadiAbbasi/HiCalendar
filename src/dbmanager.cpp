@@ -1,4 +1,4 @@
-#include "dbmanager.h"
+#include "include/dbmanager.hpp"
 
 DbManager *DbManager::getInstance(QObject *parent)
 {
@@ -73,7 +73,7 @@ QSqlQueryModel& DbManager::getQuery(QString query)
     {
         output="can't open!";
     }
-    return qrym;
+    //return qrym;
 }
 
 DbManager* DbManager::_sInstance=nullptr;

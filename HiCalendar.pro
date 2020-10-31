@@ -1,6 +1,6 @@
 QT += qml quick core gui widgets sql
 
-CONFIG += c++11
+CONFIG += c++17
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -18,11 +18,11 @@ include(deployment.pri)
 include(crossplatform_assets.pri)
 
 SOURCES += \
-        main.cpp \
-    hi/hicalendar.cpp
+        src/main.cpp \
+    src/hi/hicalendar.cpp
 
 HEADERS += \
-    hi/hicalendar.h
+    include/hi/hicalendar.hpp
 
 RESOURCES += qml.qrc
 

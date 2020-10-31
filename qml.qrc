@@ -1,10 +1,27 @@
 <RCC>
-    <qresource prefix="/hi">
-        <file>main.qml</file>
-        <file>hi/HiCalendarView.qml</file>
-        <file>hi/HiCalendarFullDayItemView.qml</file>
-        <file>hi/HiCalendarMinDayItemView.qml</file>
-        <file>hi/HiCalendarJalaliHeader.qml</file>
-        <file>hi/HiCalendarGeorgianHeader.qml</file>
+    <qresource prefix="/">
+        <file>ui/main.qml</file>
+        <file>ui/HiCalendarView.qml</file>
+        <file>ui/FontSystem.qml</file>
+        <file>ui/Component/Button.qml</file>
+        <file>ui/Component/TextView.qml</file>
+        <file>ui/Component/HorizontalLine.qml</file>
+        <file>ui/Component/HorizontalSpacer.qml</file>
+        <file>ui/Component/VerticalLine.qml</file>
+        <file>ui/Component/VerticalSpacer.qml</file>
+        <file>ui/Component/MiniButton.qml</file>
+        <file>assets/Font Awesome 5 Brands-Regular-400.otf</file>
+        <file>assets/Font Awesome 5 Free-Regular-400.otf</file>
+        <file>assets/Font Awesome 5 Free-Solid-900.otf</file>
+        <file>assets/Shabnam-Medium.ttf</file>
+        <file>assets/Shabnam-Medium-FD.ttf</file>
+        <file>ui/View/MinDayView.qml</file>
+        <file>ui/View/FullItemView.qml</file>
+        <file>ui/Component/RadioCheck.qml</file>
+        <file>ui/Header.qml</file>
+        <file>ui/Component/CircleButton.qml</file>
+        <file>ui/Footer.qml</file>
+        <file>assets/Shabnam-Light.ttf</file>
+        <file>assets/Shabnam-Light-FD.ttf</file>
     </qresource>
 </RCC>
