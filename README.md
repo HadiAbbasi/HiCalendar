@@ -76,3 +76,8 @@ You need CMake or QMake tool for building source code based on Qt 5.15 series.
 
 **Contribution**
 Bug fixes, docs, and enhancements welcome! Please let us know hadi.abbasi.programmer@gmail.com or kambiz.ceo@gmail.com
+
+**Screen Shots**
+https://github.com/HadiAbbasi/HiCalendar/blob/main/Georgian-01.png
+https://github.com/HadiAbbasi/HiCalendar/blob/main/Georgian-02.png
+https://github.com/HadiAbbasi/HiCalendar/blob/main/Jalali.png
