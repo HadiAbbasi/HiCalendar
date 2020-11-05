@@ -12,36 +12,36 @@ Item {
 
     FontLoader {
         id: fontAwesomeBrand
-        source: "qrc:/assets/Font Awesome 5 Brands-Regular-400.otf"
+        source: "qrc:/assets/fonts/Font Awesome 5 Brands-Regular-400.otf"
     }
 
     FontLoader {
         id: fontAwesomeRegular
-        source: "qrc:/assets/Font Awesome 5 Free-Regular-400.otf"
+        source: "qrc:/assets/fonts/Font Awesome 5 Free-Regular-400.otf"
     }
 
     FontLoader {
         id: fontAwesomeSolid
-        source: "qrc:/assets/Font Awesome 5 Free-Solid-900.otf"
+        source: "qrc:/assets/fonts/Font Awesome 5 Free-Solid-900.otf"
     }
 
     FontLoader {
         id: contentFont
-        source: "qrc:/assets/Shabnam-Medium.ttf"
+        source: "qrc:/assets/fonts/Shabnam-Medium.ttf"
     }
 
     FontLoader {
         id: contentFontLight
-        source: "qrc:/assets/Shabnam-Light.ttf"
+        source: "qrc:/assets/fonts/Shabnam-Light.ttf"
     }
 
     FontLoader {
         id: contentFontLightFarsi
-        source: "qrc:/assets/Shabnam-Light-FD.ttf"
+        source: "qrc:/assets/fonts/Shabnam-Light-FD.ttf"
     }
 
     FontLoader {
         id: contentFontFarsi
-        source: "qrc:/assets/Shabnam-Medium-FD.ttf"
+        source: "qrc:/assets/fonts/Shabnam-Medium-FD.ttf"
     }
 }

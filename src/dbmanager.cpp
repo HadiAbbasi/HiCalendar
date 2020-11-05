@@ -16,6 +16,8 @@ void DbManager::deleteInstance()
         _sInstance->deleteLater();
         _sInstance=nullptr;
     }
+
+
 }
 
 DbManager::DbManager(QObject *parent) : QObject(parent) {}

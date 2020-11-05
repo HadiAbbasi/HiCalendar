@@ -1,3 +1,17 @@
+unix:!android {
+    isEmpty(target.path) {
+        qnx {
+	    target.path = /tmp/$${TARGET}/bin
+	} else {
+	    target.path = /opt/$${TARGET}/bin
+	}
+	export(target.path)
+    }
+    INSTALLS += target
+}
+
+export(INSTALLS)
+
 SOURCES += src/assetsmanager.cpp \
     src/dbmanager.cpp
 
@@ -8,9 +22,8 @@ source = $$PWD/assets
 target = $$OUT_PWD/assets
 target ~= s,\\\\\\.?\\\\,\\,
 
-
 win32{
-    message("target is windows")
+    message("target is Windows x86")
     if(exists($$OUT_PWD/assets)){
         message("assets exists!")
     }
@@ -28,7 +41,7 @@ win32{
     }
 }
 win64{
-    message("target is windows")
+    message("target is Windows x64")
     if(exists($$OUT_PWD/assets)){
         message("assets exists!")
     }
@@ -46,12 +59,18 @@ win64{
     }
 }
 android{
+    message("target is Android")
     QT += androidextras
-    message("target is android")
     COMMON_DATA.path = /assets
     COMMON_DATA.files = $$files($$PWD/assets/*)
     INSTALLS += COMMON_DATA
 }
-mac {
+ios {
+    message("target is iOS")
+    CONFIG += sdk_no_version_check
+}
+macos {
+    message("target is macOS")
+    CONFIG+=sdk_no_version_check
     QT += macextras
 }

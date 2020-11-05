@@ -21,6 +21,8 @@
 #ifndef HICALENDAR_HPP
 #define HICALENDAR_HPP
 
+#include "../common.hpp"
+
 #include <QDate>
 #include <QObject>
 #include <QCalendar>
@@ -87,10 +89,11 @@ public:
 
 //////::::::::::::::::::::::::::::::::::::: Calendar Day Model
 
+class HiCalendarDayModel;
 /**
  * @brief The HiCalendarDayModel class: day of calendar
  */
-class HiCalendarDayModel : public QObject
+class HI_CALENDAR_EXPORT HiCalendarDayModel : public QObject
 {
     Q_OBJECT
 public:
@@ -154,7 +157,7 @@ public:
        * @brief getJalaliDateAsYearMonthDay: it returns jalali date of this day as year_month_day struct
        * @return: jalali year_mont_day struct object of this day
        */
-      Q_INVOKABLE YearMonthDay getJalaliDateAsYearMonthDay() const;
+      Q_INVOKABLE [[maybe_unused]] YearMonthDay getJalaliDateAsYearMonthDay() const;
      /**
        * @brief getJalaliYear: getter for jalali year
        * @return: int jalali year
@@ -174,7 +177,7 @@ public:
       * @brief getGeorgianDateAsYearMonthDay: get georgian date as year month day object
       * @return: year month day struct object
       */
-     Q_INVOKABLE YearMonthDay getGeorgianDateAsYearMonthDay() const;
+     Q_INVOKABLE [[maybe_unused]] YearMonthDay getGeorgianDateAsYearMonthDay() const;
      /**
        * @brief getGeorgianYear: get the georgian year of this day
        * @return: int georgian year of this day
@@ -194,7 +197,7 @@ public:
        * @brief getIslamicDateAsYearMonthDay: getter for islamic year_month_day struct object of this day
        * @return: year_month_day struct object of this day
        */
-      Q_INVOKABLE YearMonthDay getIslamicDateAsYearMonthDay() const;
+      Q_INVOKABLE [[maybe_unused]] YearMonthDay getIslamicDateAsYearMonthDay() const;
      /**
        * @brief getIslamicYear: getter for the year of islamic calendar
        * @return islamic year number of this day
@@ -250,7 +253,7 @@ public:
        * @brief toString: it return georgian,jalali,islamic info of this day as json format
        * @return: json string of this day
        */
-      Q_INVOKABLE QString toString() const;
+      Q_INVOKABLE [[maybe_unused]] QString toString() const;
      /**
        * ~HiCalendarDayModel: destructor for the day of calendar
        * */
@@ -270,10 +273,11 @@ signals:
 
 //////::::::::::::::::::::::::::::::::::::: Calendar Controller
 
+class HiCalendarController;
 /**
  * @brief The HiCalendarController class
  */
-class HiCalendarController : public QObject
+class HI_CALENDAR_EXPORT HiCalendarController : public QObject
 {
     Q_OBJECT
 public:
@@ -316,37 +320,37 @@ public:
     /**
      * @brief nextDay: select next day
      */
-    Q_INVOKABLE void nextDay();
+    Q_INVOKABLE [[maybe_unused]] void nextDay();
     /**
      * @brief prevDay: select prev day
      */
-    Q_INVOKABLE void prevDay();
+    Q_INVOKABLE [[maybe_unused]] void prevDay();
     /**
      * @brief nextMonth: select next month
      */
-    Q_INVOKABLE void nextMonth();
+    Q_INVOKABLE [[maybe_unused]] void nextMonth();
     /**
      * @brief prevMonth: select prev month
      */
-    Q_INVOKABLE void prevMonth();
+    Q_INVOKABLE [[maybe_unused]] void prevMonth();
     /**
      * @brief nextYear: select next year
      */
-    Q_INVOKABLE void nextYear();
+    Q_INVOKABLE [[maybe_unused]] void nextYear();
     /**
      * @brief prevYear: select prev year
      */
-    Q_INVOKABLE void prevYear();
+    Q_INVOKABLE [[maybe_unused]] void prevYear();
     /**
      * @brief addDayItem: adder for a new day in current month
      * @param _Day: new day object
      */
-    Q_INVOKABLE void addDayItem(HiCalendarDayModel* _Day);
+    Q_INVOKABLE [[maybe_unused]] void addDayItem(HiCalendarDayModel* _Day);
     /**
      * @brief selectDayByClick: it selects input day
      * @param _Day: select input day
      */
-    Q_INVOKABLE void selectDayByClick(HiCalendarDayModel *_Day);
+    Q_INVOKABLE [[maybe_unused]] void selectDayByClick(HiCalendarDayModel *_Day);
     /**
      * @brief clearCurrentDays: clear the screen of calendar for change day, month, year of calendar
      */
@@ -407,10 +411,11 @@ private:
 
 ////////:::::::::::::::::::::::::::::::::::: Hi Calendar Context
 
+class HiCalendarContext;
 /**
  * @brief The HiCalendarContext class: it's required as we need to change calendar types
  */
-class HiCalendarContext : public QObject
+class HI_CALENDAR_EXPORT HiCalendarContext : public QObject
 {
     Q_OBJECT
 public:
@@ -437,7 +442,7 @@ public:
      * @brief getCalendar: getter for calendar controller
      * @return current calendar controller of this context
      */
-    Q_INVOKABLE HiCalendarController* getCalendar();
+    Q_INVOKABLE [[maybe_unused]] HiCalendarController* getCalendar();
     /**
      * @brief ~HiCalendarContext: destructor
      */
@@ -453,8 +458,8 @@ private:
 
 };
 
-Q_DECLARE_METATYPE(YearMonthDay);
-Q_DECLARE_METATYPE(HiCalendarDayModel);
-Q_DECLARE_METATYPE(HiCalendarController);
+Q_DECLARE_METATYPE(YearMonthDay)
+Q_DECLARE_METATYPE(HiCalendarDayModel)
+Q_DECLARE_METATYPE(HiCalendarController)
 
 #endif // HICALENDAR_HPP

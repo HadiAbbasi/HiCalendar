@@ -22,6 +22,7 @@
 #define ASSETSMANAGER_HPP
 
 #include <iostream>
+#include "common.hpp"
 
 using namespace std;
 
@@ -29,7 +30,11 @@ using namespace std;
 #include <QObject>
 #include <QDir>
 
-class AssetsManager
+class AssetsManager;
+/*!
+ * \brief The AssetsManager class
+ */
+class HI_CALENDAR_EXPORT AssetsManager
 {
 public:
     enum assetType{db_asset,file_asset,qrc_asset};
@@ -37,7 +42,7 @@ public:
 private:
     AssetsManager() {}
     AssetsManager(AssetsManager&) {}
-    AssetsManager(AssetsManager*) {}
+    explicit AssetsManager(AssetsManager*) {}
 };
 
 #endif // ASSETSMANAGER_HPP

@@ -26,9 +26,14 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include "common.hpp"
 #include "assetsmanager.hpp"
 
-class DbManager : public QObject
+class DbManager;
+/*!
+ * \brief The DbManager class
+ */
+class HI_CALENDAR_EXPORT DbManager : public QObject
 {
     Q_OBJECT
 public:
