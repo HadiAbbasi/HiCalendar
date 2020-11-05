@@ -75,7 +75,7 @@ QSqlQueryModel& DbManager::getQuery(QString query)
     {
         output="can't open!";
     }
-    //return qrym;
+    return qrym;
 }
 
 DbManager* DbManager::_sInstance=nullptr;
