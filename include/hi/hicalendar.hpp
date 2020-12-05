@@ -21,13 +21,10 @@
 #ifndef HICALENDAR_HPP
 #define HICALENDAR_HPP
 
-#include "../common.hpp"
-
 #include <QDate>
 #include <QObject>
 #include <QCalendar>
 #include <QDebug>
-
 #include <QApplication>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -36,10 +33,12 @@
 #include <QDebug>
 #include <QDateTime>
 
+#include "../common.hpp"
+
 //////::::::::::::::::::::::::::::::::::::: YearMonthDay
 
 /**
- * @brief The YearMonthDay struct: it contains 3 int properties to save year.month.day properties
+ * @brief The YearMonthDay struct: it contains 3 int properties to save year.month.day values
  */
 struct YearMonthDay: public QObject
 {
@@ -87,7 +86,7 @@ public:
     ~YearMonthDay();
 };
 
-//////::::::::::::::::::::::::::::::::::::: Calendar Day Model
+////////::::::::::::::::::::::::::::::::::::: Calendar Day Model
 
 class HiCalendarDayModel;
 /**
@@ -97,22 +96,22 @@ class HI_CALENDAR_EXPORT HiCalendarDayModel : public QObject
 {
     Q_OBJECT
 public:
-    Q_PROPERTY(int jalali_year READ getJalaliYear NOTIFY dayModifiedSi)//get jalali year of this day
-    Q_PROPERTY(int jalali_month READ getJalaliMonth NOTIFY dayModifiedSi)//get jalali month of this day
-    Q_PROPERTY(int jalali_day READ getJalaloDay NOTIFY dayModifiedSi)//get jalali day of this day
+    Q_PROPERTY(int  jalali_year READ getJalaliYear NOTIFY dayModifiedSi)//get jalali year of this day
+    Q_PROPERTY(int  jalali_month READ getJalaliMonth NOTIFY dayModifiedSi)//get jalali month of this day
+    Q_PROPERTY(int  jalali_day READ getJalaloDay NOTIFY dayModifiedSi)//get jalali day of this day
     Q_PROPERTY(YearMonthDay georgian_yearmonthday READ getGeorgianDateAsYearMonthDay NOTIFY dayModifiedSi)//get georgian year_month_day struct of this day
-    Q_PROPERTY(int georgian_year READ getGeorgianYear NOTIFY dayModifiedSi)//get georgian year of this day
-    Q_PROPERTY(int georgian_month READ getGeorgianMonth NOTIFY dayModifiedSi)//get georgian month of this day
-    Q_PROPERTY(int georgian_day READ getGeorgianDay NOTIFY dayModifiedSi)//get georgian day of this day
-    Q_PROPERTY(int islamic_year READ getIslamicYear NOTIFY dayModifiedSi)//get islamic year of this day
-    Q_PROPERTY(int islamic_month READ getIslamicMonth NOTIFY dayModifiedSi)//get islamic month of this day
-    Q_PROPERTY(int islamic_day READ getIslamicDay NOTIFY dayModifiedSi)//get islamic day of this day
+    Q_PROPERTY(int  georgian_year READ getGeorgianYear NOTIFY dayModifiedSi)//get georgian year of this day
+    Q_PROPERTY(int  georgian_month READ getGeorgianMonth NOTIFY dayModifiedSi)//get georgian month of this day
+    Q_PROPERTY(int  georgian_day READ getGeorgianDay NOTIFY dayModifiedSi)//get georgian day of this day
+    Q_PROPERTY(int  islamic_year READ getIslamicYear NOTIFY dayModifiedSi)//get islamic year of this day
+    Q_PROPERTY(int  islamic_month READ getIslamicMonth NOTIFY dayModifiedSi)//get islamic month of this day
+    Q_PROPERTY(int  islamic_day READ getIslamicDay NOTIFY dayModifiedSi)//get islamic day of this day
     Q_PROPERTY(bool is_day_over READ isDayOver NOTIFY dayModifiedSi)//is this day over? returns true if this day is passed
     Q_PROPERTY(bool is_today READ isToday NOTIFY dayModifiedSi)//is this day today?
     Q_PROPERTY(bool is_holiday READ isHoliday NOTIFY dayModifiedSi)//is this day holiday in selected calendar type?
-    Q_PROPERTY(int day_of_custom_month READ getDayOfCustomMonth NOTIFY dayModifiedSi)//day of custom month in selcted calendar type
-    Q_PROPERTY(int day_of_custom_week READ getDayOfCustomWeek NOTIFY dayModifiedSi)//day of custom week in selected calendar type
-    Q_PROPERTY(int day_in_custom_week_n_of_month READ getDayInCustomWeekNOfMonth NOTIFY dayModifiedSi)//day is in week number n of current custom month in selected calendar type! it return n
+    Q_PROPERTY(int  day_of_custom_month READ getDayOfCustomMonth NOTIFY dayModifiedSi)//day of custom month in selcted calendar type
+    Q_PROPERTY(int  day_of_custom_week READ getDayOfCustomWeek NOTIFY dayModifiedSi)//day of custom week in selected calendar type
+    Q_PROPERTY(int  day_in_custom_week_n_of_month READ getDayInCustomWeekNOfMonth NOTIFY dayModifiedSi)//day is in week number n of current custom month in selected calendar type! it return n
     Q_PROPERTY(QDate georgian_date READ getGeorgianDate NOTIFY dayModifiedSi)//this is the base georgian date for this day and it converts it to other calendar types
     /**
      * @brief HiCalendarDayModel: main & default constructor
@@ -162,17 +161,17 @@ public:
        * @brief getJalaliYear: getter for jalali year
        * @return: int jalali year
        */
-      Q_INVOKABLE int getJalaliYear() const;
+      Q_INVOKABLE [[maybe_unused]] int getJalaliYear() const;
      /**
        * @brief getJalaliMonth: getter for jalali month
        * @return: int jalali month
        */
-      Q_INVOKABLE int getJalaliMonth() const;
+      Q_INVOKABLE [[maybe_unused]] int getJalaliMonth() const;
      /**
        * @brief getJalaloDay: getter for jalali day
        * @return: int jalali day
        */
-      Q_INVOKABLE int getJalaloDay() const;
+      Q_INVOKABLE [[maybe_unused]] int getJalaloDay() const;
      /**
       * @brief getGeorgianDateAsYearMonthDay: get georgian date as year month day object
       * @return: year month day struct object
@@ -182,17 +181,17 @@ public:
        * @brief getGeorgianYear: get the georgian year of this day
        * @return: int georgian year of this day
        */
-      Q_INVOKABLE int getGeorgianYear() const;
+      Q_INVOKABLE [[maybe_unused]] int getGeorgianYear() const;
      /**
        * @brief getGeorgianMonth: get the georgian month of this day
        * @return: int georgian month of this day
        */
-      Q_INVOKABLE int getGeorgianMonth() const;
+      Q_INVOKABLE [[maybe_unused]] int getGeorgianMonth() const;
      /**
        * @brief getGeorgianDay: get the georgian day of this day
        * @return: int georgian day of this day
        */
-      Q_INVOKABLE int getGeorgianDay() const;
+      Q_INVOKABLE [[maybe_unused]] int getGeorgianDay() const;
      /**
        * @brief getIslamicDateAsYearMonthDay: getter for islamic year_month_day struct object of this day
        * @return: year_month_day struct object of this day
@@ -202,52 +201,52 @@ public:
        * @brief getIslamicYear: getter for the year of islamic calendar
        * @return islamic year number of this day
        */
-      Q_INVOKABLE int getIslamicYear() const;
+      Q_INVOKABLE [[maybe_unused]] int getIslamicYear() const;
      /**
        * @brief getIslamicMonth: getter for the month of islamic calendar
        * @return islamic month number of this day
        */
-      Q_INVOKABLE int getIslamicMonth() const;
+      Q_INVOKABLE [[maybe_unused]] int getIslamicMonth() const;
      /**
        * @brief getIslamicDay: getter for the day of islamic calendar
        * @return islamic day number of this day
        */
-      Q_INVOKABLE int getIslamicDay() const;
+      Q_INVOKABLE [[maybe_unused]] int getIslamicDay() const;
      /**
        * @brief getDayOfCustomMonth: day in custom month (according to the week/calendar type which was selected)
        * @return: the day number of custom month
        */
-      Q_INVOKABLE int getDayOfCustomMonth() const;
+      Q_INVOKABLE [[maybe_unused]] int getDayOfCustomMonth() const;
      /**
        * @brief getDayOfCustomWeek: get day of custom week (according to the week/calendar type which was selected)
        * @return day number of custom week
        */
-      Q_INVOKABLE int getDayOfCustomWeek() const;
+      Q_INVOKABLE [[maybe_unused]] int getDayOfCustomWeek() const;
      /**
        * @brief getDayInCustomWeekNOfMonth: get the number of week in custom month of this day
        * @return: returns the number of the week of this day in custom month
        */
-      Q_INVOKABLE int getDayInCustomWeekNOfMonth() const;
+      Q_INVOKABLE [[maybe_unused]] int getDayInCustomWeekNOfMonth() const;
      /**
        * @brief isDayOver: returns the result of the question: is this day passed?
        * @return if the day is past, return true , otherwise returns false
        */
-      Q_INVOKABLE bool isDayOver() const;
+      Q_INVOKABLE [[maybe_unused]] bool isDayOver() const;
      /**
        * @brief isToday: return true if this day is today
        * @return: true -> if day equals today , false: if day is not equal today
        */
-      Q_INVOKABLE bool isToday() const;
+      Q_INVOKABLE [[maybe_unused]] bool isToday() const;
      /**
       * @brief isHoliday in selected calendar type?
       * @return: returns true if this day is holiday, otherwise it returns false
       */
-     Q_INVOKABLE bool isHoliday() const;
+     Q_INVOKABLE [[maybe_unused]] bool isHoliday() const;
      /**
        * @brief getGeorgianDate: get date of day as QDate
        * @return georgian QDate of day
        */
-      Q_INVOKABLE QDate getGeorgianDate() const;
+      Q_INVOKABLE [[maybe_unused]] QDate getGeorgianDate() const;
 
      /**
        * @brief toString: it return georgian,jalali,islamic info of this day as json format
@@ -271,7 +270,7 @@ signals:
      bool _is_holiday;//is this day a holiday in selcted calendar type?
 };
 
-//////::::::::::::::::::::::::::::::::::::: Calendar Controller
+////////::::::::::::::::::::::::::::::::::::: Calendar Controller
 
 class HiCalendarController;
 /**
@@ -298,25 +297,30 @@ public:
      */
     explicit HiCalendarController(const HiCalendarController &_Input);
     /**
-     * @brief getDaysOfCurrentMonth: getter for the list of days of current selected month
-     * @return QVariantList of current days
+     * @brief getCalendarType: getter for calendar type
+     * @return the current calendar type of this calendar
      */
-    Q_INVOKABLE const QVariantList getDaysOfCurrentMonth() const;
-    /**
-     * @brief getCurrentSelectedDay: getter for current selcted day
-     * @return the selected day of this calendar
-     */
-    Q_INVOKABLE HiCalendarDayModel* getCurrentSelectedDay() const;
-    /**
-     * @brief showCurrentSelectedYearMonthDay: update the screen of calendar to input georgian qdate
-     * @param _SelectedDate: input georgian date
-     */
-    Q_INVOKABLE void showCurrentSelectedYearMonthDay(QDate _SelectedDate = QDate(1,1,1));
+    Q_INVOKABLE CalendarTypes getCalendarType() const;
     /**
      * @brief currentMonthHeaderInfo: getter for header of calendar for current selcted month
      * @return the header string value
      */
-    Q_INVOKABLE QString currentMonthHeaderInfo() const;
+    Q_INVOKABLE [[maybe_unused]] QString currentMonthHeaderInfo() const;
+    /**
+     * @brief getDaysOfCurrentMonth: getter for the list of days of current selected month
+     * @return QVariantList of current days
+     */
+    Q_INVOKABLE [[maybe_unused]] const QVariantList getDaysOfCurrentMonth() const;
+    /**
+     * @brief getCurrentSelectedDay: getter for current selcted day
+     * @return the selected day of this calendar
+     */
+    Q_INVOKABLE [[maybe_unused]] HiCalendarDayModel* getCurrentSelectedDay() const;
+    /**
+     * @brief showCurrentSelectedYearMonthDay: update the screen of calendar to input georgian qdate
+     * @param _SelectedDate: input georgian date
+     */
+    Q_INVOKABLE [[maybe_unused]] void showCurrentSelectedYearMonthDay(QDate _SelectedDate = QDate(1,1,1));
     /**
      * @brief nextDay: select next day
      */
@@ -354,19 +358,13 @@ public:
     /**
      * @brief clearCurrentDays: clear the screen of calendar for change day, month, year of calendar
      */
-    Q_INVOKABLE void clearCurrentDays();
+    Q_INVOKABLE [[maybe_unused]] void clearCurrentDays();
     /**
       * @brief operator = asign operator
       * @param other: the value which will be asigned with
       * @return final data
       */
      HiCalendarController& operator=(const HiCalendarController& other);
-     /**
-       * @brief operator = asign operator
-       * @param other: the value which will be asigned with
-       * @return final data
-       */
-      HiCalendarController& operator=(const HiCalendarController* other);
      /**
       * @brief operator != operator is not equeal
       * @param other: compare with
@@ -396,12 +394,6 @@ signals:
      * @brief daySelectedSi: signal for selecting new day
      */
     void daySelectedSi(HiCalendarDayModel*);
-public slots:
-    /**
-     * @brief getCalendarType: getter for calendar type
-     * @return the current calendar type of this calendar
-     */
-    CalendarTypes getCalendarType() const;
 private:
     QVariantList _days_of_current_month_list;//qvariantlist of current days of selected month
     CalendarTypes _calendar_type;//calendar type of this calendar
@@ -419,7 +411,7 @@ class HI_CALENDAR_EXPORT HiCalendarContext : public QObject
 {
     Q_OBJECT
 public:
-    Q_PROPERTY(HiCalendarController* calendar_ctrl READ getCalendar NOTIFY CalendarChangedSi )//get calendar controller object of this context
+    Q_PROPERTY(HiCalendarController* calendar_ctrl READ getCalendar NOTIFY calendarChangedSi )//get calendar controller object of this context
     /**
      * @brief HiCalendarContext: default constructor
      * @param parent: qobject parent object
@@ -432,12 +424,12 @@ public:
      * //if calendar_type is "euro" or "euro_calendar" or "euro_georgian_calendar": it will change to euro georgian
      * //if calendar_type is "jalali" or "jalali_calendar": it will change to jalali,islamic calendar
      */
-    Q_INVOKABLE void renewCalendar(QString calendar_type);
+    Q_INVOKABLE [[maybe_unused]] void renewCalendar(QString calendar_type);
     /**
      * @brief renewCalendar: update calendar type
      * @param calendar_type: input calendar type
      */
-    Q_INVOKABLE void renewCalendar(HiCalendarController::CalendarTypes calendar_type);
+    Q_INVOKABLE [[maybe_unused]] void renewCalendar(HiCalendarController::CalendarTypes calendar_type);
     /**
      * @brief getCalendar: getter for calendar controller
      * @return current calendar controller of this context
@@ -449,13 +441,12 @@ public:
     ~HiCalendarContext();
 signals:
     /**
-     * @brief CalendarChangedSi: signal for the while that calendar type is changed
+     * @brief calendarChangedSi: signal for the while that calendar type is changed
      */
-    void CalendarChangedSi();
+    void calendarChangedSi();
 
 private:
     HiCalendarController* _calendar;//main calendar controller object
-
 };
 
 Q_DECLARE_METATYPE(YearMonthDay)

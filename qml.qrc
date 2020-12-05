@@ -1,27 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>ui/main.qml</file>
-        <file>ui/HiCalendarView.qml</file>
-        <file>ui/FontSystem.qml</file>
-        <file>ui/Component/Button.qml</file>
-        <file>ui/Component/TextView.qml</file>
-        <file>ui/Component/HorizontalLine.qml</file>
-        <file>ui/Component/HorizontalSpacer.qml</file>
-        <file>ui/Component/VerticalLine.qml</file>
-        <file>ui/Component/VerticalSpacer.qml</file>
-        <file>ui/Component/MiniButton.qml</file>
-        <file>ui/View/MinDayView.qml</file>
-        <file>ui/View/FullItemView.qml</file>
-        <file>ui/Component/RadioCheck.qml</file>
-        <file>ui/Header.qml</file>
-        <file>ui/Component/CircleButton.qml</file>
-        <file>ui/Footer.qml</file>
-        <file>assets/fonts/Font Awesome 5 Brands-Regular-400.otf</file>
-        <file>assets/fonts/Font Awesome 5 Free-Regular-400.otf</file>
-        <file>assets/fonts/Font Awesome 5 Free-Solid-900.otf</file>
-        <file>assets/fonts/Shabnam-Light-FD.ttf</file>
-        <file>assets/fonts/Shabnam-Light.ttf</file>
-        <file>assets/fonts/Shabnam-Medium-FD.ttf</file>
-        <file>assets/fonts/Shabnam-Medium.ttf</file>
+		<file>ui/View/Component/Header.qml</file>
+		<file>ui/View/Component/Footer.qml</file>
+		<file>ui/View/Component/HorizontalSpacer.qml</file>
+		<file>ui/View/Component/VerticalSpacer.qml</file>
+		<file>ui/View/Component/HorizontalLine.qml</file>
+		<file>ui/View/Component/VerticalLine.qml</file>
+		<file>ui/View/Component/FontSystem.qml</file>
+		<file>ui/View/Component/RadioCheck.qml</file>
+		<file>ui/View/Component/CircleButton.qml</file>
+		<file>ui/View/Component/TextView.qml</file>
+		<file>ui/View/hi/HiCalendarView.qml</file>
+		<file>ui/View/hi/MinDayView.qml</file>
+        <file>ui/View/hi/FullItemView.qml</file>
     </qresource>
 </RCC>

@@ -42,5 +42,4 @@
 #define QML_REGISTER(classname,packagename,MAJORVERSION,minorversion) \
 qmlRegisterType<classname>(packagename, MAJORVERSION, minorversion, #classname);
 
-
 #endif // COMMON_HPP

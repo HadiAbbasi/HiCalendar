@@ -19,7 +19,6 @@
  */
 
 #include <iostream>
-
 using namespace std;
 
 #include <QApplication>
@@ -45,7 +44,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     HiCalendarContext* calendar_context = new HiCalendarContext();
-    QObject::connect(calendar_context,&HiCalendarContext::CalendarChangedSi,[calendar_context]() {
+    QObject::connect(calendar_context,&HiCalendarContext::calendarChangedSi,[calendar_context]() {
         QObject::connect(calendar_context->getCalendar(),&HiCalendarController::daySelectedSi,[]( HiCalendarDayModel* selected_day) {
             qDebug()<<"-------> "<<selected_day->toString();
             //            selected_day->isToday();
@@ -61,9 +60,9 @@ int main(int argc, char *argv[])
             //            selected_day->getIslamicYear();
         });
     });
-    calendar_context->renewCalendar(HiCalendarController::CalendarTypes::UsGeorgian);//
+    calendar_context->renewCalendar(HiCalendarController::CalendarTypes::UsGeorgian);//default calendar is us georgian
     engine.rootContext()->setContextProperty("ASSETS", AssetsManager::getAssetsAddress(AssetsManager::file_asset));
-    engine.rootContext()->setContextProperty("calendar_context", QVariant::fromValue(calendar_context));
+    engine.rootContext()->setContextProperty("calendar_context", calendar_context);//QVariant::fromValue(calendar_context)
     engine.load(QUrl(AssetsManager::getAssetsAddress(AssetsManager::qrc_asset,"ui/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

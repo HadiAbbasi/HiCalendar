@@ -20,8 +20,8 @@
 
 #pragma once
 //The configured options and settings for Project
-#define PROJECT_VERSION_MAJOR           0
-#define PROJECT_VERSION_MINOR           7
-#define PROJECT_VERSION_REVISION        43
-#define PROJECT_VERSION                 "0.7"
+#define PROJECT_VERSION_MAJOR           1
+#define PROJECT_VERSION_MINOR           1
+#define PROJECT_VERSION_REVISION        0
+#define PROJECT_VERSION                 "1.1.0"
 #define PROJECT_BUILD_DEBUG_MODE    1

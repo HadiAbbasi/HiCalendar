@@ -18,7 +18,7 @@ ColumnLayout {
 
         width: widthSize
         height: lineSize
-        color: setColor
+        color: "#f0f4f9"
     }
 
     Item { height: 1; }

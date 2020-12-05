@@ -1,33 +1,32 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick 2.14
+import QtQuick.Window 2.14
+import QtQuick.Controls 2.14
+import QtQuick.Layouts 1.14
 
 import hi 1.0
 
-import "./Component" as Controls
+import "./View/hi"
+import "./View/Component" as Controls
 
 ApplicationWindow {
     id: appRoot
-    visible: true
     width: 500
     height: 650
     title: qsTr("Hi Calendar")
+    visible: true
 
-    property alias calSimpleMode : radioSimple
+    Controls.FontSystem {
+        id: fontSystem
+    }
 
     background: Rectangle {
         color: "#ffffff"
     }
 
-    FontSystem {
-        id: fontSystem
-    }
-
     Drawer {
-        id: settinDrawer
+        id: settingDrawer
         width: appRoot.width
-        height: appRoot.height / 2.5
+        height: 160
         edge: Qt.TopEdge
 
         contentData: ColumnLayout {
@@ -39,7 +38,7 @@ ApplicationWindow {
             Text {
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 font.family: fontSystem.getContentFont.name
-                font.pixelSize: 18
+                font.pixelSize: settingDrawer.height/12
                 text: qsTr("Calendar Type")
                 color: "#4b5668"
             }
@@ -47,7 +46,6 @@ ApplicationWindow {
             Controls.HorizontalLine { }
 
             RowLayout {
-
                 width: parent.width
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -58,8 +56,6 @@ ApplicationWindow {
                     checked: true
                     onClicked: {
                         calendar_context.renewCalendar("us");
-                        calendar_context.calendar_ctrl.showCurrentSelectedYearMonthDay();
-                        calendar.weeks.drawWeekDays()
                     }
                 }
 
@@ -68,8 +64,6 @@ ApplicationWindow {
                     text: "Georgian (Euro)"
                     onClicked: {
                         calendar_context.renewCalendar("euro");
-                        calendar_context.calendar_ctrl.showCurrentSelectedYearMonthDay();
-                        calendar.weeks.drawWeekDays()
                     }
                 }
 
@@ -78,127 +72,31 @@ ApplicationWindow {
                     text: "Jalali (فارسی)"
                     onClicked: {
                         calendar_context.renewCalendar("jalali");
-                        calendar_context.calendar_ctrl.showCurrentSelectedYearMonthDay();
-                        calendar.weeks.drawWeekDays()
-                    }
-                }
-            }
-
-            Controls.HorizontalLine { }
-
-            Item { height: 5; }
-
-            Text {
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                font.family: fontSystem.getContentFont.name
-                font.pixelSize: 18
-                text: qsTr("Calendar Mode")
-                color: "#4b5668"
-            }
-
-            Controls.HorizontalLine { }
-
-            RowLayout {
-
-                width: parent.width
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-                Controls.RadioCheck {
-                    id: radioSimple
-                    text: "Simple Mode"
-                    checked: true
-                    onClicked: {
-
-                    }
-                }
-
-                Controls.RadioCheck {
-                    id: radioFull
-                    text: "Full Mode"
-                    onClicked: {
-
                     }
                 }
             }
         }
     }
 
-    header: Header {
+    header: Controls.Header {
+        id: header
+        height: 70
         onClick: {
-            settinDrawer.open();
+            settingDrawer.open();
         }
     }
 
-    contentData: ColumnLayout {
 
-        width: parent.width
-        Layout.fillWidth: true
-        spacing: 5
-
-        Item { height: 15; }
-
-        RowLayout {
-
-            width: parent.width
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-            Item { width: 25; }
-
-            Controls.CircleButton {
-                setIcon:  "\uf053"
-                hasBorder: true
-                onClick: {
-                    calendar_context.calendar_ctrl.prevMonth();
-                }
-            }
-
-            Controls.HorizontalSpacer { }
-
-            Controls.TextView {
-                width: parent.width
-                Layout.fillWidth: true
-                font.pixelSize: 16
-                text: calendar_context.calendar_ctrl.headerinfo
-            }
-
-            Controls.HorizontalSpacer { }
-
-            Controls.CircleButton {
-                setIcon:  "\uf054"
-                hasBorder: true
-                onClick: {
-                    calendar_context.calendar_ctrl.nextMonth();
-                }
-            }
-
-            Item { width: 25; }
-        }
-
-
-        Item { height: 5; }
-
-
-        Controls.HorizontalLine { }
-
-        Component.onCompleted: {
-            calendar_context.renewCalendar("us");
-            calendar_context.calendar_ctrl.showCurrentSelectedYearMonthDay();
-            calendar.weeks.drawWeekDays()
-        }
-
-        Item { height: 5; }
-
-        HiCalendarView {
-            id: calendar
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            visible: true
-        }
-
-        Item { height: 5; }
-
+    HiCalendarView {
+        id: calendar
+        calendarWidth: appRoot.width
+        calendarHeight: appRoot.height - header.height - footer.height
+        visible: true
+        //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     }
 
-    footer: Footer { height: 48; }
+    footer: Controls.Footer {
+        id:  footer
+        height: 40;
+    }
 }

@@ -1,6 +1,8 @@
 QT += qml quick core gui widgets sql
 
 CONFIG += c++17
+QMAKE_CXXFLAGS += /std:c++latest
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -11,8 +13,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG(debug, debug|release){
     message("debug")
 } else {
-
-message("release")
+    message("release")
     DEFINES += QT_NO_DEBUG_OUTPUT QT_NO_WARNING_OUTPUT ABR_BUILD_DEBUG_MODE
     CONFIG  += qtquickcompiler
     CONFIG  += optimize_full
@@ -24,15 +25,16 @@ message("release")
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Default rules for deployment.
-include(deployment.pri)
 include(crossplatform_assets.pri)
 
 SOURCES += \
-        src/main.cpp \
+    src/main.cpp \
     src/hi/hicalendar.cpp
 
 HEADERS += \
-    include/hi/hicalendar.hpp
+    include/hi/hicalendar.hpp\
+    include/config.hpp\
+    include/common.hpp
 
 RESOURCES += qml.qrc
 
@@ -41,8 +43,3 @@ QML_IMPORT_PATH =
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target

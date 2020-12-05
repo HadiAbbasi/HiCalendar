@@ -1,9 +1,9 @@
 #include "include/assetsmanager.hpp"
 
-QString AssetsManager::getAssetsAddress(AssetsManager::assetType _AssetType,QString _Offset)
+QString AssetsManager::getAssetsAddress(AssetsManager::AssetType _AssetType,QString _Offset)
 {
     QString output="";
-    if(_AssetType == assetType::file_asset)
+    if(_AssetType == AssetType::file_asset)
     {
 #ifdef Q_OS_ANDROID
     output = "assets:/";
@@ -11,7 +11,7 @@ QString AssetsManager::getAssetsAddress(AssetsManager::assetType _AssetType,QStr
      output = "file:/"+QDir::currentPath()+"/assets/";
 #endif
     }
-    else if(_AssetType == assetType::db_asset)
+    else if(_AssetType == AssetType::db_asset)
     {
 #ifdef Q_OS_ANDROID
     output = "";
@@ -19,7 +19,7 @@ QString AssetsManager::getAssetsAddress(AssetsManager::assetType _AssetType,QStr
      output = "assets/";
 #endif
     }
-    else if(_AssetType == assetType::qrc_asset)
+    else if(_AssetType == AssetType::qrc_asset)
     {
         output = "qrc:/";
     }

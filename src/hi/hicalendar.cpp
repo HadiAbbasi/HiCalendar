@@ -8,7 +8,7 @@ QObject(parent),year(_Year),month(_Month),day(_Day) {}
 YearMonthDay::YearMonthDay(const YearMonthDay &other):
 QObject(other.parent()),year(other.year),month(other.month),day(other.day) {}
 
-YearMonthDay &YearMonthDay::operator=(const YearMonthDay &other)
+YearMonthDay& YearMonthDay::operator=(const YearMonthDay &other)
 {
     this->setParent(other.parent());
     this->year = other.year;
@@ -19,7 +19,7 @@ YearMonthDay &YearMonthDay::operator=(const YearMonthDay &other)
 
 bool YearMonthDay::operator !=(const YearMonthDay &other)
 {
-return (this->parent() != other.parent() || this->year != other.year || this->month != other.month || this->day != other.day);
+    return (this->parent() != other.parent() || this->year != other.year || this->month != other.month || this->day != other.day);
 }
 
 bool YearMonthDay::operator ==(const YearMonthDay &other)
@@ -29,7 +29,7 @@ bool YearMonthDay::operator ==(const YearMonthDay &other)
 
 YearMonthDay::~YearMonthDay() {}
 
-////::::::::::::::::::::::::::::::::::::::::::: HiCalendarSelectedDayData
+//////::::::::::::::::::::::::::::::::::::::::::: HiCalendarSelectedDayData
 
 HiCalendarDayModel::HiCalendarDayModel(QDate _Date, int _DayOfCustomMonth, int _DayOfCustomWeek, int _DayInCustomWeekOfMonth, bool _IsHoliday , QObject *parent):
      QObject(parent),
@@ -41,15 +41,15 @@ HiCalendarDayModel::HiCalendarDayModel(QDate _Date, int _DayOfCustomMonth, int _
     _day_in_custom_week_of_month = 1;
     if (_DayOfCustomMonth > 0 && _DayOfCustomMonth <32)
     {
-        _day_of_custom_month = _DayOfCustomMonth;
+            _day_of_custom_month = _DayOfCustomMonth;
     }
     if(_DayOfCustomWeek > 0 && _DayOfCustomWeek < 8)
     {
-        _day_of_custom_week = _DayOfCustomWeek;
+            _day_of_custom_week = _DayOfCustomWeek;
     }
     if(_DayInCustomWeekOfMonth > 0 && _DayInCustomWeekOfMonth < 7)
     {
-        _day_in_custom_week_of_month = _DayInCustomWeekOfMonth;
+            _day_in_custom_week_of_month = _DayInCustomWeekOfMonth;
     }
     emit dayModifiedSi();
 }
@@ -210,7 +210,7 @@ QString HiCalendarDayModel::toString() const
 
 HiCalendarDayModel::~HiCalendarDayModel() {}
 
-////////::::::::::::::::::::::::::::::::::::: Calendar Controller
+//////////::::::::::::::::::::::::::::::::::::: Calendar Controller
 
 HiCalendarController::HiCalendarController(HiCalendarController::CalendarTypes _CalendarType, QObject *_Parent):
     QObject(_Parent),
@@ -229,6 +229,16 @@ HiCalendarController::HiCalendarController(const HiCalendarController &_Input):
     emit calendarTypeChanged(_calendar_type);
 }
 
+HiCalendarController::CalendarTypes HiCalendarController::getCalendarType() const
+{
+    return _calendar_type;
+}
+
+QString HiCalendarController::currentMonthHeaderInfo() const
+{
+    return _current_month_header_info;
+}
+
 const QVariantList HiCalendarController::getDaysOfCurrentMonth() const
 {
     return _days_of_current_month_list;
@@ -237,11 +247,6 @@ const QVariantList HiCalendarController::getDaysOfCurrentMonth() const
 HiCalendarDayModel* HiCalendarController::getCurrentSelectedDay() const
 {
     return _current_selected_day;
-}
-
-HiCalendarController::CalendarTypes HiCalendarController::getCalendarType() const
-{
-    return _calendar_type;
 }
 
 void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
@@ -290,7 +295,6 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
         first_islamic_month = islamic_date.month;
         first_islamic_year = islamic_date.year;
         int day_counter = 1;
-
         while ( jalali_calendar.partsFromDate(newDate).month == month)
         {
             bool is_holiday = false;
@@ -306,7 +310,6 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
             {
                 day_is_in_week_N_of_month++;
             }
-
             islamic_date = islamic_calendar.partsFromDate(newDate);
             if(islamic_date.month != first_islamic_month)
             {
@@ -324,7 +327,6 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
             {
                 second_georgian_year = newDate.year();
             }
-
             //jalali holidays
             if (newDate.dayOfWeek() == 5) is_holiday = true;
             if (month == 1)
@@ -338,15 +340,26 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
             }
             if (month == 11 && day_counter == 22)  is_holiday = true;
             if (month == 12 && (day_counter == 29 || day_counter == 30)) is_holiday = true;
-
             //islamic holidays
             if (islamic_date.month == 1)
             {
-                if (islamic_date.day == 9 || islamic_date.day == 10) is_holiday = true;
+                if (islamic_date.day == 9 || islamic_date.day == 10) is_holiday = true;//tasua-ashura
             }
             if (islamic_date.month == 2)
             {
-                if (islamic_date.day == 20 || islamic_date.day == 28 || islamic_date.day == 29) is_holiday = true;
+                qDebug()<<"=============2";
+                if (islamic_date.day == 20 || islamic_date.day == 28 || islamic_date.day == 30) is_holiday = true;
+                if (islamic_date.day == 29)
+                {
+                    qDebug()<<newDate.toString();
+                    QDate tmpDate = newDate.addDays(1);
+                    qDebug()<<newDate<<" ====> ttt " << tmpDate.toString();
+                    QCalendar::YearMonthDay islamic_date_tmp = islamic_calendar.partsFromDate(tmpDate);
+                    if (islamic_date_tmp.month != 2)
+                    {
+                        is_holiday = true;
+                    }
+                }
             }
             if (islamic_date.month == 3)
             {
@@ -396,7 +409,6 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
             _current_month_header_info += georgian_months[first_georgian_month-1] + " " + QString::number(first_georgian_year);
             _current_month_header_info += " - " + georgian_months[second_georgian_month-1] + " " + QString::number(second_georgian_year)+"\n";
         }
-
         if(second_islamic_year == 0) //same islamic year
         {
             _current_month_header_info += islamic_months[first_islamic_month-1] + " - " + islamic_months[second_islamic_month-1] + " " + QString::number(first_islamic_year);
@@ -465,7 +477,6 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
             {
                 if (newDate.day() == 25) is_holiday = true;
             }
-
             HiCalendarDayModel* newDay = new HiCalendarDayModel(newDate, newDate.day(), day_of_week, day_is_in_week_N_of_month ,is_holiday,this);
             this->addDayItem(newDay);
             if(newDate == _SelectedDate)
@@ -483,10 +494,6 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
     emit refreshCalendarSi();
 }
 
-QString HiCalendarController::currentMonthHeaderInfo() const
-{
-    return _current_month_header_info;
-}
 void HiCalendarController::nextDay()
 {
     if (_current_selected_day != nullptr && _days_of_current_month_list.length() >0)
@@ -619,17 +626,17 @@ void HiCalendarController::selectDayByClick(HiCalendarDayModel *_Day)
     if (_days_of_current_month_list.length() >0)
     {
         this->showCurrentSelectedYearMonthDay(selected_date);
-//        for (QVariantList::iterator j = _days_of_current_month_list.begin(); j != _days_of_current_month_list.end(); j++)
-//        {
-//            QObject* object = qvariant_cast<QObject*>(*j);
-//            HiCalendarDayModel* day = qobject_cast<HiCalendarDayModel*>(object);
-//            if (day->getGeorgianDate() == selected_date)
-//            {
-//                _current_selected_day = day;
-//                break;
-//            }
-//        }
-//        emit daySelectedSi(_current_selected_day);
+        for (QVariantList::iterator j = _days_of_current_month_list.begin(); j != _days_of_current_month_list.end(); j++)
+        {
+            QObject* object = qvariant_cast<QObject*>(*j);
+            HiCalendarDayModel* day = qobject_cast<HiCalendarDayModel*>(object);
+            if (day->getGeorgianDate() == selected_date)
+            {
+                _current_selected_day = day;
+                emit daySelectedSi(_current_selected_day);
+                break;
+            }
+        }
     }
 }
 
@@ -639,7 +646,7 @@ void HiCalendarController::clearCurrentDays()
     {
         QObject* object = qvariant_cast<QObject*>(*j);
         HiCalendarDayModel* day = qobject_cast<HiCalendarDayModel*>(object);
-        delete day;
+        day->deleteLater();
     }
     _days_of_current_month_list.clear();
     emit refreshCalendarSi();
@@ -651,15 +658,6 @@ HiCalendarController &HiCalendarController::operator=(const HiCalendarController
     this->_calendar_type = other.getCalendarType();
     this->_current_selected_day = other.getCurrentSelectedDay();
     this->_current_month_header_info = other.currentMonthHeaderInfo();
-    return *this;
-}
-
-HiCalendarController &HiCalendarController::operator=(const HiCalendarController *other)
-{
-    this->_days_of_current_month_list = other->getDaysOfCurrentMonth();
-    this->_calendar_type = other->getCalendarType();
-    this->_current_selected_day = other->getCurrentSelectedDay();
-    this->_current_month_header_info = other->currentMonthHeaderInfo();
     return *this;
 }
 
@@ -681,7 +679,7 @@ HiCalendarController::~HiCalendarController()
     this->clearCurrentDays();
 }
 
-////////:::::::::::::::::::::::::::::::::::::::::::::: Hi Calendar Context
+//////////:::::::::::::::::::::::::::::::::::::::::::::: Hi Calendar Context
 
 HiCalendarContext::HiCalendarContext(QObject *parent) : QObject(parent),_calendar (nullptr) {}
 
@@ -708,24 +706,25 @@ void HiCalendarContext::renewCalendar(HiCalendarController::CalendarTypes calend
     if (calendar_type == HiCalendarController::CalendarTypes::UsGeorgian)
     {
         changed = true;
-        if (_calendar != nullptr) delete _calendar;
+        if (_calendar != nullptr) _calendar->deleteLater();
         _calendar = new  HiCalendarController(HiCalendarController::CalendarTypes::UsGeorgian , this);
     }
     else if(calendar_type == HiCalendarController::CalendarTypes::EuroGeorgian)
     {
         changed = true;
-        if (_calendar != nullptr) delete _calendar;
+        if (_calendar != nullptr) _calendar->deleteLater();
         _calendar = new  HiCalendarController(HiCalendarController::CalendarTypes::EuroGeorgian, this);
     }
     else if (calendar_type == HiCalendarController::CalendarTypes::Jalali)
     {
         changed =  true;
-        if (_calendar != nullptr) delete _calendar;
+        if (_calendar != nullptr) _calendar->deleteLater();
         _calendar = new  HiCalendarController(HiCalendarController::CalendarTypes::Jalali, this);
     }
-    if (changed == true)
+    if (changed == true && _calendar != nullptr)
     {
-        emit CalendarChangedSi();
+        _calendar->showCurrentSelectedYearMonthDay();
+        emit calendarChangedSi();
     }
 }
 
@@ -738,6 +737,6 @@ HiCalendarContext::~HiCalendarContext()
 {
     if (_calendar != nullptr)
     {
-        delete _calendar;
+        _calendar->deleteLater();
     }
 }
