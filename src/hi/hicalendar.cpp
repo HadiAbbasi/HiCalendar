@@ -331,7 +331,7 @@ void HiCalendarController::showCurrentSelectedYearMonthDay(QDate _SelectedDate)
             if (newDate.dayOfWeek() == 5) is_holiday = true;
             if (month == 1)
             {
-                if (day_counter >= 1 && day_counter <= 5) is_holiday = true;
+                if (day_counter >= 1 && day_counter < 5) is_holiday = true;
                 if (day_counter == 12 || day_counter == 13) is_holiday = true;
             }
             if (month == 3)
