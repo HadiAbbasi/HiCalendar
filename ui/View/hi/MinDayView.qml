@@ -10,7 +10,7 @@ Rectangle {
 
     width: Math.min(calendarMain.width/7 , calendarMain.height/6);
     height: width
-    radius: width
+    radius: width/2
 
     x: {
         if(calendar_context.calendar_ctrl.calendartype >= 3)
@@ -44,22 +44,23 @@ Rectangle {
         }
     }
 
-    color: {
+    color: updateColor();
+    function updateColor(){ 
         if (calendar_context.calendar_ctrl.daysofcurrentmonth[index] === calendar_context.calendar_ctrl.getCurrentSelectedDay())
         {
-             "#5774ee"
+            return "#5774ee";
         }
         else if (calendar_context.calendar_ctrl.daysofcurrentmonth[index].isToday())
         {
-            "#ccffcc"
+            return "#ccffcc";
         }
         else if (calendar_context.calendar_ctrl.daysofcurrentmonth[index].is_holiday === true)
         {
-            "#ffcccc"
+            return "#ffcccc";
         }
         else
         {
-            "#eeeeee"
+            return "#eeeeee";
         }
     }
 
@@ -90,7 +91,10 @@ Rectangle {
     }
 
     Behavior on color {
+        id:rootBehavior
+        enabled:false;
         ColorAnimation {
+            id:colorAnim
             duration: 200;
             easing.type: Easing.Linear;
         }
@@ -156,6 +160,20 @@ Rectangle {
         onClicked:
         {
             calendar_context.calendar_ctrl.selectDayByClick(calendar_context.calendar_ctrl.daysofcurrentmonth[index]);
+        }
+    }
+
+    function enableBehaviorOnColor()
+    {
+        if(calendar_context.calendar_ctrl.daysofcurrentmonth[index] ===
+                calendar_context.calendar_ctrl.getCurrentSelectedDay())
+        {
+            dayItem.color.a = 0.1;
+            rootBehavior.enabled=true;
+            dayItem.color = updateColor();
+        }
+        else{
+            rootBehavior.enabled=false;
         }
     }
 }
