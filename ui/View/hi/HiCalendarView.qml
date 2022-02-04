@@ -35,8 +35,8 @@ Page {
                 id: nextYear
                 setIcon: (calendar_context.calendar_ctrl.calendartype === 3)?"+Y":"Y+"
                 hasBorder: true
-                color: "#6da6c0"
-                textColor: "#ffffff"
+                defaultColor: "#6da6c0"
+                defaultTextColor: "#ffffff"
                 x:(calendar_context.calendar_ctrl.calendartype === 3)?calendarSpacings:calendarWidth-calendarSpacings-nextYear.width;
                 y: 2
                 onClick: {
@@ -48,8 +48,8 @@ Page {
                 id: nextMonth
                  setIcon: (calendar_context.calendar_ctrl.calendartype === 3)?"+M":"M+"
                  hasBorder: true
-                 color: "#6da6c0"
-                 textColor: "#ffffff"
+                 defaultColor: "#6da6c0"
+                 defaultTextColor: "#ffffff"
                  x:(calendar_context.calendar_ctrl.calendartype === 3)?nextYear.x + nextYear.width + calendarSpacings : nextYear.x - calendarSpacings - nextMonth.width;
                  y: 2
                  onClick: {
@@ -61,8 +61,8 @@ Page {
                 id:  nextDay
                  setIcon: (calendar_context.calendar_ctrl.calendartype === 3)?"+D":"D+"
                  hasBorder: true
-                 color: "#6da6c0"
-                 textColor: "#ffffff"
+                 defaultColor: "#6da6c0"
+                 defaultTextColor: "#ffffff"
                  x:(calendar_context.calendar_ctrl.calendartype === 3)?nextMonth.x + nextMonth.width + calendarSpacings : nextMonth.x - calendarSpacings - nextDay.width;
                  y: 2
                  onClick: {
@@ -82,8 +82,8 @@ Page {
                  id: prevDay
                  setIcon: (calendar_context.calendar_ctrl.calendartype === 3)?"D-":"-D"
                  hasBorder: true
-                 color: "#6da6c0"
-                 textColor: "#ffffff"
+                 defaultColor: "#6da6c0"
+                 defaultTextColor: "#ffffff"
                  x:(calendar_context.calendar_ctrl.calendartype === 3)?prevMonth.x-calendarSpacings-prevMonth.width : prevMonth.x + prevMonth.width + calendarSpacings
                  y: 2
                  onClick: {
@@ -95,8 +95,8 @@ Page {
                 id: prevMonth
                  setIcon: (calendar_context.calendar_ctrl.calendartype === 3)?"M-":"-M"
                  hasBorder: true
-                 color: "#6da6c0"
-                 textColor: "#ffffff"
+                 defaultColor: "#6da6c0"
+                 defaultTextColor: "#ffffff"
                  x:(calendar_context.calendar_ctrl.calendartype === 3)?prevYear.x-calendarSpacings-prevYear.width : prevYear.x + prevYear.width + calendarSpacings
                  y: 2
                  onClick: {
@@ -108,8 +108,8 @@ Page {
                 id: prevYear
                 setIcon: (calendar_context.calendar_ctrl.calendartype === 3)?"Y-":"-Y"
                 hasBorder: true
-                color: "#6da6c0"
-                textColor: "#ffffff"
+                defaultColor: "#6da6c0"
+                defaultTextColor: "#ffffff"
                 x:(calendar_context.calendar_ctrl.calendartype === 3)?calendarWidth-calendarSpacings-prevYear.width : calendarSpacings
                 y: 2
                 onClick: {
