@@ -219,6 +219,7 @@ Page {
                             onLoaded:
                             {
                                 dayOfCalendar.item.index = index
+                                dayOfCalendar.item.enableBehaviorOnColor();// this func need index , so we should call this after assigning index
                             }
                         }
                     }
@@ -231,7 +232,7 @@ Page {
 
     Connections {
         target: calendar_context
-        onCalendarChangedSi:
+        function onCalendarChangedSi()
         {
             weeks.drawWeekDays()
         }
